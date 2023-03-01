@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+
+    <h2>A basic HTML</h2>
+
+    <br/><br/> 
+
+    <!--<form action="" id="mainform">
+      <label for="">Car Type</label>
+      <select name="cars" id="Car-Type">
+        <option value="0">All</option>
+        <option value="volvo">Volvo</option>
+        <option value="bmw">BMW</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+
+
+      <label for="">Car Condition</label>
+      <select name="cars" id="Car-Condition">
+        <option value="0">All</option>
+        <option value="Normal">Normal operating conditions (Green)</option>
+        <option value="saab">Low - Fix Within Schedule (Yellow)</option>
+        <option value="mercedes">Medium - Fix within 24 Hours (Orange)</option>
+        <option value="audi">High - Stop and Fix (Red)</option>
+      </select>
+
+      <button>Submit</button>
+    </form>
+
+    <br/><br/> 
+
+
+    <form action="" id="subform">
+      <label for="">Car Color</label>
+      <select name="cars" id="Car-Color">
+        <option value="0">All</option>
+        <option value="Green">Natural and light (Green)</option>
+        <option value="Yellow">Gold and highlight (Yellow)</option>
+        <option value="Orange">Sky and punch (Orange)</option>
+        <option value="Red">Scarlet and velvet (Red)</option>
+      </select>
+
+      <label for="">Car Transmission</label>
+      <select name="cars" id="Car-Transmission">
+        <option value="0">All</option>
+        <option value="Automatic">Automatic</option>
+        <option value="Manual">Manual</option>
+        <option value="Hybird">Hybird</option>
+        <option value="Semi-Auto">Semi-Auto</option>
+      </select>
+
+      <button>Submit</button>
+    </form>-->
+
+
+    <form>
+      <label for="myInput">Input field:</label>
+      <input type="text" id="myInput" name="myInput">
+
+      <label for="myInput">Id field:</label>
+      <input type="text" id="idInput" name="idInput">
+    </form>
+    
+    <!-- Script to populate the input field with the value of `id` -->
+
+
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    var poleid = "pole-" + Math.random().toString(16).slice(10);
+
+    setTimeout(function() { 
+      $('#FORM_StreetLights_PoleID').val(poleid)
+    }, 300); 
+
+  </script>
+    <!--<script>
+      // get references to the form fields
+      const form1Field = document.getElementById('mainform');
+      const form2Field = document.getElementById('subform');
+
+      // add an event listener to the form1 field
+      form2Field.addEventListener('change', (event) => {
+        // get the value of the form1 field
+        if ($('#Car-Color').val().includes('Green')){
+          const form2Value = event.target.value;
+          // update the value of the form2 field based on the value of the form1 field
+          form1Field.value = 'Normal operating conditions (Green)';
+        }
+        else if ($('#Car-Color').val().includes('Yellow')) {
+          const form2Value = event.target.value;
+        } 
+        else if ($('#Car-Color').val().includes('Orange')) {
+          const form2Value = event.target.value;
+        } 
+        else if ($('#Car-Color').val().includes('Red')) {
+          const form2Value = event.target.value;
+        }
+      });
+      
+    </script>-->
+</html>
+
+
+
