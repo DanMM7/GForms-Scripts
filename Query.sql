@@ -236,3 +236,51 @@ UNPIVOT
       ([DesignCtrlRating], [DataCtrlRating], [VerificationCtrlRating])  
 )AS unpvt;  
 
+
+
+
+/************************************************ GForms Queries *************************************************/
+--Query for SubForm where child not linked 
+SELECT FType.FIELD_FieldTypeID, FType.FIELD_FieldType, ftype.FIELD_Description,fields.FIELD_Label,forms.FIELD_FormName,fields.FIELD_fkSubformLink
+FROM TABLE_FieldTypes FType
+INNER JOIN TABLE_Fields fields 
+ON FType.FIELD_FieldTypeID = fields.FIELD_FieldType
+LEFT JOIN TABLE_Sections sections 
+ON Fields.FIELD_fkSection = sections.FIELD_SectionID
+LEFT JOIN TABLE_Forms forms 
+ON forms.FIELD_FormID = sections.FIELD_fkForm
+WHERE fields.FIELD_fkSubformLink IS NULL;
+
+-- Query to list Drop Down which has not been fully setup. 
+SELECT FType.FIELD_FieldTypeID, FType.FIELD_FieldType, ftype.FIELD_Description,fields.FIELD_Label,forms.FIELD_FormName,fields.FIELD_DS_DataTable
+FROM TABLE_FieldTypes FType
+INNER JOIN TABLE_Fields fields 
+ON FType.FIELD_FieldTypeID = fields.FIELD_FieldType
+LEFT JOIN TABLE_Sections sections 
+ON Fields.FIELD_fkSection = sections.FIELD_SectionID 
+LEFT JOIN TABLE_Forms forms 
+ON forms.FIELD_FormID = sections.FIELD_fkForm
+WHERE FType.FIELD_FieldType = 'DDL' AND fields.FIELD_DS_DataTable IS NULL AND fields.FIELD_DS_DataFieldDisplay IS NULL;
+
+--Query to dislay where geolocation has not been set
+SELECT  * 
+FROM TABLE_FieldTypes FType
+LEFT JOIN TABLE_Fields fields 
+ON FType.FIELD_FieldTypeID = fields.FIELD_FieldType
+LEFT JOIN TABLE_Sections sections 
+ON Fields.FIELD_fkSection = sections.FIELD_SectionID
+LEFT JOIN TABLE_Forms forms 
+ON forms.FIELD_FormID = sections.FIELD_fkForm
+INNER JOIN TABLE_FieldTypeSettings fts 
+ON fts.FIELD_fkFieldTypeID = FType.FIELD_FieldTypeID
+LEFT JOIN TABLE_FieldSettingsAdditional fsa
+ON fsa.FIELD_fkFieldID = fields.FIELD_FieldID
+WHERE fsa.FIELD_SettingValue = '' AND FType.FIELD_FieldType = 'geolocation';
+
+-- Query to display permission to specific users.
+Select useright.ID,useright.FIELD_pkID,useright.FIELD_fkFormID,forms.FIELD_FormName,forms.FIELD_FormStatus,userViews.FIELD_ViewID,userViews.FIELD_userID
+FROM TABLE_UserRights useright
+INNER join TABLE_Forms forms
+ON useright.FIELD_fkFormID = forms.FIELD_FormID
+INNER JOIN TABLE_UserRights_Views userViews
+ON useright.FIELD_fkUserID=userViews.FIELD_userID
