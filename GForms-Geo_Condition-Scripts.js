@@ -20,8 +20,6 @@ if($('#FORM_GTI_GeotechnicalConditions_StructuralDefects_Criticality').val().inc
       $('[field_dest=SlopeMonitoring_Evidence][multiple=multiple]').val() + '' + 
       $('#FORM_GTI_GeotechnicalConditions_SlopeMonitoring_Criticality').val());
 
-
-        
 $('#FORM_GTI_GeotechnicalConditions_Results').val() == '' ? 
 $('#FORM_GTI_GeotechnicalConditions_Results').val('All Clear') : 0; 
 
