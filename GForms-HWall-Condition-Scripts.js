@@ -61,10 +61,10 @@ if($('#FORM_GTI_HangingWallConditions_LooseRockCrest_Criticality').val().include
         $('#FORM_GTI_HangingWallConditions_CracksHangWall_Criticality').val() + '');
 
         
-    $('#FORM_GTI_HangingWallConditions_Results').val() == '' ? 
-    $('#FORM_GTI_HangingWallConditions_Results').val('All Clear'); 
+$('#FORM_GTI_HangingWallConditions_Results').val() == '' ? 
+$('#FORM_GTI_HangingWallConditions_Results').val('All Clear') : 0; 
 
-    $('#FORM_GTI_HangingWallConditions_SubmitForm').trigger(click); 
+$('#FORM_GTI_HangingWallConditions_SubmitForm').trigger(click); 
 
 setTimeout(function() { 
     const containerSelector = '[container=childResults]'; 
