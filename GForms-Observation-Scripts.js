@@ -240,7 +240,7 @@ else{
     $('{this}').css('background-color', 'white').css('color','black'); 
 }; 
 
-$('#FORM_WD_Observation_CFTCondAlertLevel').val() != 'Normal toe, face and crest geometry; no toe spreading or heaving, face bulging, crest oversteepening or excessive ravelling. (Green)' && 
+$('#FORM_WD_Observation_CFTCondAlertLevel').val() != 'Normal toe, face and crest geometry;  no toe spreading or heaving, face bulging, crest oversteepening or excessive ravelling. (Green)' && 
 $('#FORM_WD_Observation_CFTCondAlertLevel').val() != '[NULL]' ? 
 $('#FORM_WD_Observation_CrestCondition_AnomalyClass').parent().show() && 
 $('#FORM_WD_Observation_CrestCondition_Scale').parent().show() && 
@@ -254,8 +254,7 @@ $('[field_dest=CrestCondition_Evidence][multiple=multiple]').parent().hide() &&
 $('#FORM_WD_Observation_CrestCondition_Consequence').parent().hide() && 
 $('#FORM_WD_Observation_CrestCondition_Threat_Prevent').parent().hide() && 
 $('#FORM_WD_Observation_CrestCondition_Instability').parent().hide();
-$('#FORM_WD_Inspection_TarpLevel').val() && 
-$('#FORM_WD_Inspection_TarpLevel').change();
+
 
 
 
@@ -460,7 +459,6 @@ $('#FORM_WD_Inspection_TarpLevel').change();
 
 
 
-
 // Parent Child Scripts  ****************  9  **************************** //
 if('{controlvalue}'.includes('(Green)')) { 
     $('{this}').css('background-color', 'green').css('color','white'); 
@@ -474,9 +472,10 @@ else if('{controlvalue}'.includes('(Orange)')) {
 else if('{controlvalue}'.includes('(Yellow)')) { 
     $('{this}').css('background-color', 'yellow').css('color','black'); 
 }
-else{
+else if ('{controlvalue}'.includes('[NULL]')){
     $('{this}').css('background-color', 'white').css('color','black'); 
 }; 
+
 
 
 $('#FORM_WD_Observation_DeformRateAlertLevel').val() != 'Normal operating conditions (Green)' && 
@@ -493,8 +492,10 @@ $('[field_dest=DeformationRate_Evidence][multiple=multiple]').parent().hide() &&
 $('#FORM_WD_Observation_DeformationRate_Consequence').parent().hide() && 
 $('#FORM_WD_Observation_DeformationRate_Threat_Prevent').parent().hide() && 
 $('#FORM_WD_Observation_DeformationRate_Instability').parent().hide();
-$('#FORM_WD_Inspection_TarpLevel').val() && 
-$('#FORM_WD_Inspection_TarpLevel').change();
+
+
+
+
 
 
 
