@@ -17,6 +17,54 @@ else {
 };
 
 
+////////////////////////////////////////// CC1-Verification Ratings /////////////////////////////////////////////////////////
+if ('{controlvalue}'.includes('Good')) { 
+    $('{this}').css('background-color', 'green').css('color', 'black'); 
+    $('#FORM_CC1_VerificationActions').parent().hide();
+} 
+else if ('{controlvalue}'.includes('Moderate')) { 
+    $('{this}').css('background-color', 'yellow').css('color', 'black'); 
+    $('#FORM_CC1_VerificationActions').parent().show(); 
+} 
+else if ('{controlvalue}'.includes('Weak')) { 
+    $('{this}').css('background-color', 'orange').css('color', 'white'); 
+    $('#FORM_CC1_VerificationActions').parent().show(); 
+} 
+else if ('{controlvalue}'.includes('Deficient')) { 
+    $('{this}').css('background-color', 'red').css('color', 'white');
+    $('#FORM_CC1_VerificationActions').parent().show();  
+} 
+else if ('{controlvalue}'.includes('[NULL]')){
+    $('{this}').css('background-color', 'white').css('color','black');
+    $('#FORM_CC1_VerificationActions').parent().hide(); 
+};
+
+
+
+
+ ////////////////////////////////////////// CC1-Design Ratings /////////////////////////////////////////////////////////
+if ('{controlvalue}'.includes('Good')) { 
+    $('{this}').css('background-color', 'green').css('color', 'black'); 
+    $('#FORM_CC1_DesignActions').parent().hide();
+} 
+else if ('{controlvalue}'.includes('Moderate')) { 
+    $('{this}').css('background-color', 'yellow').css('color', 'black'); 
+    $('#FORM_CC1_DesignActions').parent().show(); 
+} 
+else if ('{controlvalue}'.includes('Weak')) { 
+    $('{this}').css('background-color', 'orange').css('color', 'white');
+    $('#FORM_CC1_DesignActions').parent().show();  
+} 
+else if ('{controlvalue}'.includes('Deficient')) { 
+    $('{this}').css('background-color', 'red').css('color', 'white'); 
+    $('#FORM_CC1_DesignActions').parent().show(); 
+} 
+else if ('{controlvalue}'.includes('[NULL]')){
+    $('{this}').css('background-color', 'white').css('color','black');
+    $('#FORM_CC1_DesignActions').parent().hide(); 
+};
+
+
 
 //////////////////////////////////// Ratings Value Filter & Change ////////////////////////////////////////////
 setTimeout(function() { 
