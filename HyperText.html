@@ -32,12 +32,12 @@
       <button>Submit</button>
     </form>
 
-    <br/><br/> 
+    <br/><br/> -->
 
 
     <form action="" id="subform">
       <label for="">Car Color</label>
-      <select name="cars" id="Car-Color">
+      <select name="cars" id="Colors">
         <option value="0">All</option>
         <option value="Green">Natural and light (Green)</option>
         <option value="Yellow">Gold and highlight (Yellow)</option>
@@ -46,7 +46,7 @@
       </select>
 
       <label for="">Car Transmission</label>
-      <select name="cars" id="Car-Transmission">
+      <select name="cars" id="Transmission">
         <option value="0">All</option>
         <option value="Automatic">Automatic</option>
         <option value="Manual">Manual</option>
@@ -55,19 +55,33 @@
       </select>
 
       <button>Submit</button>
-    </form>-->
-
-
-    <form>
-      <label for="myInput">Input field:</label>
-      <input type="text" id="myInput" name="myInput">
-
-      <label for="myInput">Id field:</label>
-      <input type="text" id="idInput" name="idInput">
     </form>
+
+    <br><br><br><br>
     
     <!-- Script to populate the input field with the value of `id` -->
 
+    <script>
+      if ($('#Colors').includes('Green')) { 
+          $('#Colors').css('background-color', 'green').css('color', 'black'); 
+          $('#Transmission').parent().hide();
+      } 
+      else if ($('#Colors').includes('Yellow')) { 
+        $('#Colors').css('background-color', 'yellow').css('color', 'black'); 
+          $('#Transmission').parent().show(); 
+      } 
+      else if ($('#Colors').includes('Orange')) { 
+        $('#Colors').css('background-color', 'orange').css('color', 'white');
+          $('#Transmission').parent().show();  
+      } 
+      else if ($('#Colors').includes('Red')) { 
+        $('#Colors').css('background-color', 'red').css('color', 'white'); 
+          $('#Transmission').parent().show(); 
+      } 
+      else if ($('#Colors').includes('[NULL]')){
+        $('#Colors').css('background-color', 'white').css('color','black');
+          $('#Transmission').parent().hide(); 
+    </script>
 
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -104,6 +118,8 @@
       });
       
     </script>-->
+
+
 </html>
 
 
