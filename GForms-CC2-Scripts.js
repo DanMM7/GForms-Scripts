@@ -23,19 +23,19 @@ else {
 
 //////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
 setTimeout(function () {
-    if ($('#FORM_CC1.AsbuiltCtrlRating').val('Good')) { 
+    if ($('#FORM_CC2.AsbuiltCtrlRating').val('Good')) { 
         $('#FORM_CC2_AsBuiltActions').parent().hide();
     } 
     else if ($('#FORM_CC1.AsbuiltCtrlRating').val('Moderate')) { 
         $('#FORM_CC2_AsBuiltActions').parent().show(); 
     } 
-    else if ($('#FORM_CC1.AsbuiltCtrlRating').val('Weak')) { 
+    else if ($('#FORM_CC2.AsbuiltCtrlRating').val('Weak')) { 
         $('#FORM_CC2_AsBuiltActions').parent().show(); 
     } 
-    else if ($('#FORM_CC1.AsbuiltCtrlRating').val('Deficient')) { 
+    else if ($('#FORM_CC2.AsbuiltCtrlRating').val('Deficient')) { 
         $('#FORM_CC2_AsBuiltActions').parent().show();  
     } 
-    else if ($('#FORM_CC1.AsbuiltCtrlRating').val('[NULL]')){
+    else if ($('#FORM_CC2.AsbuiltCtrlRating').val('[NULL]')){
         $('#FORM_CC2_AsBuiltActions').parent().hide(); 
     };
     
