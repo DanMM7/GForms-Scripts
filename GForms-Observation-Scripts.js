@@ -460,6 +460,7 @@ $('#FORM_WD_Inspection_TarpLevel').change();
 
 
 // Parent Child Scripts  ****************  9  **************************** //
+////////////////////// FOR ON KEY CHANGE /////////////////////////////
 if('{controlvalue}'.includes('(Green)')) { 
     $('{this}').css('background-color', 'green').css('color','white'); 
 } 
@@ -477,7 +478,6 @@ else if ('{controlvalue}'.includes('[NULL]')){
 }; 
 
 
-
 $('#FORM_WD_Observation_DeformRateAlertLevel').val() != 'Normal operating conditions (Green)' && 
 $('#FORM_WD_Observation_DeformRateAlertLevel').val() != '[NULL]' ? 
 $('#FORM_WD_Observation_DeformationRate_AnomalyClass').parent().show() && 
@@ -492,6 +492,26 @@ $('[field_dest=DeformationRate_Evidence][multiple=multiple]').parent().hide() &&
 $('#FORM_WD_Observation_DeformationRate_Consequence').parent().hide() && 
 $('#FORM_WD_Observation_DeformationRate_Threat_Prevent').parent().hide() && 
 $('#FORM_WD_Observation_DeformationRate_Instability').parent().hide();
+
+
+/////////////////////// FOR AFTER BROWSER LOAD CHANGES ////////////////////////
+setTimeout(function(){
+$('#FORM_WD_Observation_DeformRateAlertLevel').val() != 'Normal operating conditions (Green)' && 
+$('#FORM_WD_Observation_DeformRateAlertLevel').val() != '[NULL]' ? 
+$('#FORM_WD_Observation_DeformationRate_AnomalyClass').parent().show() && 
+$('#FORM_WD_Observation_DeformationRate_Scale').parent().show() && 
+$('[field_dest=DeformationRate_Evidence][multiple=multiple]').parent().show() && 
+$('#FORM_WD_Observation_DeformationRate_Consequence').parent().show() && 
+$('#FORM_WD_Observation_DeformationRate_Threat_Prevent').parent().show() && 
+$('#FORM_WD_Observation_DeformationRate_Instability').parent().show() : 
+$('#FORM_WD_Observation_DeformationRate_AnomalyClass').parent().hide() && 
+$('#FORM_WD_Observation_DeformationRate_Scale').parent().hide() && 
+$('[field_dest=DeformationRate_Evidence][multiple=multiple]').parent().hide() && 
+$('#FORM_WD_Observation_DeformationRate_Consequence').parent().hide() && 
+$('#FORM_WD_Observation_DeformationRate_Threat_Prevent').parent().hide() && 
+$('#FORM_WD_Observation_DeformationRate_Instability').parent().hide();
+}, 1500);
+
 
 
 
