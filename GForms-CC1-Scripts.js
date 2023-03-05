@@ -1,20 +1,48 @@
-
-/////////////////////////////////////// Ratings Color Change ///////////////////////////////////////////////////
+/////////////////////////////////////// CC1-Data Ratings ///////////////////////////////////////////////////
 if ('{controlvalue}'.includes('Good')) { 
     $('{this}').css('background-color', 'green').css('color', 'black'); 
+    $('#FORM_CC1_DataActions').parent().hide();
 } 
 else if ('{controlvalue}'.includes('Moderate')) { 
     $('{this}').css('background-color', 'yellow').css('color', 'black'); 
+    $('#FORM_CC1_DataActions').parent().show(); 
 } 
 else if ('{controlvalue}'.includes('Weak')) { 
     $('{this}').css('background-color', 'orange').css('color', 'white');
+    $('#FORM_CC1_DataActions').parent().show(); 
 } 
 else if ('{controlvalue}'.includes('Deficient')) { 
     $('{this}').css('background-color', 'red').css('color', 'white'); 
+    $('#FORM_CC1_DataActions').parent().show(); 
 }
 else { 
     $('{this}').css('background-color', 'white').css('color', 'Black'); 
+    $('#FORM_CC1_DataActions').parent().hide()
 };
+
+
+//////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
+setTimeout(function () {
+    if ($('#FORM_CC1.DataCtrlRating').val('Good')) { 
+        $('#FORM_CC1_DataActions').parent().hide();
+    } 
+    else if ($('#FORM_CC1.DataCtrlRating').val('Moderate')) { 
+        $('#FORM_CC1_DataActions').parent().show(); 
+    } 
+    else if ($('#FORM_CC1.DataCtrlRating').val('Weak')) { 
+        $('#FORM_CC1_DataActions').parent().show(); 
+    } 
+    else if ($('#FORM_CC1.DataCtrlRating').val('Deficient')) { 
+        $('#FORM_CC1_DataActions').parent().show();  
+    } 
+    else if ($('#FORM_CC1.DataCtrlRating').val('[NULL]')){
+        $('#FORM_CC1_DataActions').parent().hide(); 
+    };
+    
+}, 1500);
+
+
+
 
 
 ////////////////////////////////////////// CC1-Verification Ratings /////////////////////////////////////////////////////////
@@ -38,6 +66,27 @@ else if ('{controlvalue}'.includes('[NULL]')){
     $('{this}').css('background-color', 'white').css('color','black');
     $('#FORM_CC1_VerificationActions').parent().hide(); 
 };
+
+
+//////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
+setTimeout(function () {
+    if ($('#FORM_CC1.VerificationCtrlRating').val('Good')) { 
+        $('#FORM_CC1_VerificationActions').parent().hide();
+    } 
+    else if ($('#FORM_CC1.VerificationCtrlRating').val('Moderate')) { 
+        $('#FORM_CC1_VerificationActions').parent().show(); 
+    } 
+    else if ($('#FORM_CC1.VerificationCtrlRating').val('Weak')) { 
+        $('#FORM_CC1_VerificationActions').parent().show(); 
+    } 
+    else if ($('#FORM_CC1.VerificationCtrlRating').val('Deficient')) { 
+        $('#FORM_CC1_VerificationActions').parent().show();  
+    } 
+    else if ($('#FORM_CC1.VerificationCtrlRating').val('[NULL]')){
+        $('#FORM_CC1_VerificationActions').parent().hide(); 
+    };
+    
+}, 1500);
 
 
 
@@ -65,49 +114,32 @@ else if ('{controlvalue}'.includes('[NULL]')){
 };
 
 
+//////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
+setTimeout(function () {
+    if ($('#FORM_CC1.DesignCtrlRating').val('Good')) { 
+        $('#FORM_CC1_DesignActions').parent().hide();
+    } 
+    else if ($('#FORM_CC1.DesignCtrlRating').val('Moderate')) { 
+        $('#FORM_CC1_DesignActions').parent().show(); 
+    } 
+    else if ($('#FORM_CC1.DesignCtrlRating').val('Weak')) { 
+        $('#FORM_CC1_DesignActions').parent().show(); 
+    } 
+    else if ($('#FORM_CC1.DesignCtrlRating').val('Deficient')) { 
+        $('#FORM_CC1_DesignActions').parent().show();  
+    } 
+    else if ($('#FORM_CC1.DesignCtrlRating').val('[NULL]')){
+        $('#FORM_CC1_DesignActions').parent().hide(); 
+    };
+    
+}, 1500);
+
+
+
 
 //////////////////////////////////// Ratings Value Filter & Change ////////////////////////////////////////////
-setTimeout(function() { 
-    const containerSelector = '[container=childResults]'; 
-    const fieldSelector = 'td:first'; 
-    const tarpLevelSelector = '#FORM_CC1_DataCtrlRating'; 
-    const redText = 'Deficient'; 
-    const orangeText = 'Weak'; 
-    const yellowText = 'Moderate'; 
-    const greenText = 'Good'; 
-    let color = 4; 
-    const startingFieldId = 13; 
-    
-    for (let i = 0; i < 5; i++) { 
-        const fieldId = startingFieldId + i; 
-        const fieldValue = $(`[fieldid=${fieldId}]`).text(); 
-        
-        if ($('#FORM_CC1_DesignDesignAdequacy').includes('Adequate')) 
-            { color = 1; } 
-        else if ($('#FORM_CC1_DesignDesignAdequacy').includes('Adequate') && $('#FORM_CC1_DesignOperatingEffect').includes('Effictive')  && color > 1) 
-            { color = 2; } 
-        else if ($('#FORM_CC1_DesignDesignAdequacy').includes('Adequate') && $('#FORM_CC1_DesignOperatingEffect').includes('Effictive')  && color > 2) 
-            { color = 3; } 
-        else if ($('#FORM_CC1_DesignDesignAdequacy').includes('Adequate') && $('#FORM_CC1_DesignOperatingEffect').includes('Effictive') && color > 3) 
-            { color = 4; } 
-    } 
-    
-    switch (color) { 
-        case 1: 
-            $(tarpLevelSelector).val(`${redText}`); 
-            break; 
-        case 2: 
-            $(tarpLevelSelector).val(`${orangeText}`); 
-            break; 
-        case 3: 
-            $(tarpLevelSelector).val(`${yellowText}`); 
-            break; 
-        case 4: 
-            $(tarpLevelSelector).val(`${greenText}`); 
-            break; 
-        default: 
-            console.error('Invalid color value'); 
-    } 
-            
-    $('#FORM_CC1_DataCtrlRating').change() 
-}, 1250);
+function getSelectValue() {
+    var selectedValue1 = '#FORM_CC1_DesignDesignAdequacy';
+    var selectedValue2 = '#FORM_CC1_DesignOperatingEffect';
+
+}
