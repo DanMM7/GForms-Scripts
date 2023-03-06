@@ -1,125 +1,89 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
 
   <body>
 
     <h2>A basic HTML</h2>
-
-    <br/><br/> 
-
-    <!--<form action="" id="mainform">
-      <label for="">Car Type</label>
-      <select name="cars" id="Car-Type">
-        <option value="0">All</option>
-        <option value="volvo">Volvo</option>
-        <option value="bmw">BMW</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-
-
-      <label for="">Car Condition</label>
-      <select name="cars" id="Car-Condition">
-        <option value="0">All</option>
-        <option value="Normal">Normal operating conditions (Green)</option>
-        <option value="saab">Low - Fix Within Schedule (Yellow)</option>
-        <option value="mercedes">Medium - Fix within 24 Hours (Orange)</option>
-        <option value="audi">High - Stop and Fix (Red)</option>
-      </select>
-
-      <button>Submit</button>
-    </form>
-
-    <br/><br/> -->
-
-
-    <form action="" id="subform">
-      <label for="">Car Color</label>
-      <select name="cars" id="Colors">
-        <option value="0">All</option>
-        <option value="Green">Natural and light (Green)</option>
-        <option value="Yellow">Gold and highlight (Yellow)</option>
-        <option value="Orange">Sky and punch (Orange)</option>
-        <option value="Red">Scarlet and velvet (Red)</option>
-      </select>
-
-      <label for="">Car Transmission</label>
-      <select name="cars" id="Transmission">
-        <option value="0">All</option>
-        <option value="Automatic">Automatic</option>
-        <option value="Manual">Manual</option>
-        <option value="Hybird">Hybird</option>
-        <option value="Semi-Auto">Semi-Auto</option>
-      </select>
-
-      <button>Submit</button>
-    </form>
-
-    <br><br><br><br>
     
-    <!-- Script to populate the input field with the value of `id` -->
+    <div id="selection">
+    <select name='firstLevelParts' class='filterElements'>
+    <option value = '0'>(Select category)</option> <!-- added -->
+    <option value = '1'>Terræn</option>
+    <option value = '2'>Fundamentsystem</option>
+    <option value = '3'>Vægsystem</option>
+    <option value = '4'>Dæksystem</option>
+    <option value = '5'>Tagsystem</option>
+    </select>
+      
+    <select name='firstLevelPartsB'  class='filterElements'>
+    <option value = '0'>(Select category)</option> <!-- added -->
+    <option value = '1'>Terræn</option>
+    <option value = '2'>Fundamentsystem</option>
+    <option value = '3'>Vægsystem</option>
+    <option value = '4'>Dæksystem</option>
+    <option value = '5'>Tagsystem</option>
+    </select>
+
+    <select name='secondLevelParts' id='select'>
+    <option value='1'>Jordprofil</option>
+    <option value='2'>Befæstet Areal</option>
+    <option value='3'>Beplantning</option>
+    <option value='1'>Fundamentkonstruktion</option>
+    <option value='2'>Bærelag</option>
+    <option value='3'>Åbning</option>
+    <option value='4'>Lukning</option>
+    <option value='5'>Inddækning</option>
+    <option value='6'>Afslutning</option>
+    <option value='7'>Afskærmning</option>
+    <option value='8'>Fuge</option>
+    <option value='9'>Samling</option>
+    <option value='10'>Overflade</option>
+    </select>  
+    </div>
 
     <script>
-      if ($('#Colors').includes('Green')) { 
-          $('#Colors').css('background-color', 'green').css('color', 'black'); 
-          $('#Transmission').parent().hide();
-      } 
-      else if ($('#Colors').includes('Yellow')) { 
-        $('#Colors').css('background-color', 'yellow').css('color', 'black'); 
-          $('#Transmission').parent().show(); 
-      } 
-      else if ($('#Colors').includes('Orange')) { 
-        $('#Colors').css('background-color', 'orange').css('color', 'white');
-          $('#Transmission').parent().show();  
-      } 
-      else if ($('#Colors').includes('Red')) { 
-        $('#Colors').css('background-color', 'red').css('color', 'white'); 
-          $('#Transmission').parent().show(); 
-      } 
-      else if ($('#Colors').includes('[NULL]')){
-        $('#Colors').css('background-color', 'white').css('color','black');
-          $('#Transmission').parent().hide(); 
+      $(function() {
+        $('#select').filterByValues( $('.filterElements') );
+        $('.filterElements').change();
+      });  
+  
+  
+      jQuery.fn.filterByValues = function(masterSelects) {
+        return this.each(function() {
+          var select = this;
+          var options = [];
+          $(select).find('option').each(function() {
+            options.push({value: $(this).val(), text: $(this).text()});
+          });
+          $(select).data('options', options);
+          
+          masterSelects.bind('change', function() {
+            var options = $(select).empty().scrollTop(0).data('options');
+            var vals=[];
+            $(masterSelects).each(function(i,e){
+              vals.push('^'+$.trim($(e).val())+'$' );
+            });
+            var search = vals.join('|');
+            var regex = new RegExp(search,'gi');
+  
+            $.each(options, function(i) {
+              var option = options[i];
+              if(option.value.match(regex) !== null) {
+                $(select).append(
+                  $('<option>').text(option.text).val(option.value)
+                );
+              }
+            });
+          });
+          
+        });
+      };
     </script>
-
+   
   </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script>
-    var poleid = "pole-" + Math.random().toString(16).slice(10);
-
-    setTimeout(function() { 
-      $('#FORM_StreetLights_PoleID').val(poleid)
-    }, 300); 
-
-  </script>
-    <!--<script>
-      // get references to the form fields
-      const form1Field = document.getElementById('mainform');
-      const form2Field = document.getElementById('subform');
-
-      // add an event listener to the form1 field
-      form2Field.addEventListener('change', (event) => {
-        // get the value of the form1 field
-        if ($('#Car-Color').val().includes('Green')){
-          const form2Value = event.target.value;
-          // update the value of the form2 field based on the value of the form1 field
-          form1Field.value = 'Normal operating conditions (Green)';
-        }
-        else if ($('#Car-Color').val().includes('Yellow')) {
-          const form2Value = event.target.value;
-        } 
-        else if ($('#Car-Color').val().includes('Orange')) {
-          const form2Value = event.target.value;
-        } 
-        else if ($('#Car-Color').val().includes('Red')) {
-          const form2Value = event.target.value;
-        }
-      });
-      
-    </script>-->
-
-
 </html>
 
 
