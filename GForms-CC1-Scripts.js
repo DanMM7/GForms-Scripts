@@ -21,6 +21,42 @@ else {
 };
 
 
+setTimeout(function () {
+    if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Good');
+    }
+    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
+    }
+    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
+    }
+    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
+    }
+    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
+    }
+    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
+    }
+    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
+    }
+    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
+    }
+    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
+        $('#FORM_CC1.DataCtrlRating').val('Deficient');
+    }
+    else {
+        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
+    }
+}, 1500);
+
+
+
+
 //////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
 setTimeout(function () {
     if ($('#FORM_CC1.DataCtrlRating').val('Good')) { 
