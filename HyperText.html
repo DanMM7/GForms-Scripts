@@ -8,79 +8,63 @@
 
     <h2>A basic HTML</h2>
     
-    <div id="selection">
-    <select name='firstLevelParts' class='filterElements'>
-    <option value = '0'>(Select category)</option> <!-- added -->
-    <option value = '1'>Terræn</option>
-    <option value = '2'>Fundamentsystem</option>
-    <option value = '3'>Vægsystem</option>
-    <option value = '4'>Dæksystem</option>
-    <option value = '5'>Tagsystem</option>
-    </select>
-      
-    <select name='firstLevelPartsB'  class='filterElements'>
-    <option value = '0'>(Select category)</option> <!-- added -->
-    <option value = '1'>Terræn</option>
-    <option value = '2'>Fundamentsystem</option>
-    <option value = '3'>Vægsystem</option>
-    <option value = '4'>Dæksystem</option>
-    <option value = '5'>Tagsystem</option>
-    </select>
+      <select name="group" id="adequacy">
+        <option>Select...</option>
+        <option data-group="1" value="Inadequate">Inadequate</option>
+        <option data-group="2" value="Partially adequate">Partially adequate</option>
+        <option data-group="3" value="Adequate">Adequate</option>
+      </select>
 
-    <select name='secondLevelParts' id='select'>
-    <option value='1'>Jordprofil</option>
-    <option value='2'>Befæstet Areal</option>
-    <option value='3'>Beplantning</option>
-    <option value='1'>Fundamentkonstruktion</option>
-    <option value='2'>Bærelag</option>
-    <option value='3'>Åbning</option>
-    <option value='4'>Lukning</option>
-    <option value='5'>Inddækning</option>
-    <option value='6'>Afslutning</option>
-    <option value='7'>Afskærmning</option>
-    <option value='8'>Fuge</option>
-    <option value='9'>Samling</option>
-    <option value='10'>Overflade</option>
-    </select>  
-    </div>
+      <select name="group" id="effective">
+        <option>Select...</option>
+        <option data-group="1" value="Effective">Effective</option>
+        <option data-group="2" value="Partially effective">Partially effective</option>
+        <option data-group="3" value="Ineffective">Ineffective</option>
+      </select>
+    
+      <select name="alph" id="rating">
+        <option data-group="NULL">Select...</option>
+        <option data-group="1" value="Good">Good</option>
+        <option data-group="2" value="Moderate">Moderate</option>
+        <option data-group="3" value="Weak">Weak</option>
+        <option data-group="4" value="Deficient">Deficient</option>
+      </select> 
+   
 
     <script>
-      $(function() {
-        $('#select').filterByValues( $('.filterElements') );
-        $('.filterElements').change();
-      });  
-  
-  
-      jQuery.fn.filterByValues = function(masterSelects) {
-        return this.each(function() {
-          var select = this;
-          var options = [];
-          $(select).find('option').each(function() {
-            options.push({value: $(this).val(), text: $(this).text()});
-          });
-          $(select).data('options', options);
-          
-          masterSelects.bind('change', function() {
-            var options = $(select).empty().scrollTop(0).data('options');
-            var vals=[];
-            $(masterSelects).each(function(i,e){
-              vals.push('^'+$.trim($(e).val())+'$' );
-            });
-            var search = vals.join('|');
-            var regex = new RegExp(search,'gi');
-  
-            $.each(options, function(i) {
-              var option = options[i];
-              if(option.value.match(regex) !== null) {
-                $(select).append(
-                  $('<option>').text(option.text).val(option.value)
-                );
-              }
-            });
-          });
-          
-        });
-      };
+      // The main group
+      let groups = document.querySelector('#adequacy', '#effective')
+
+      // Add a change event
+      groups.addEventListener('change', (e) => {
+
+        // Get the currently selected Group
+        let current = e.target.options[e.target.selectedIndex]
+
+        // Get the data-group number
+        let group = current.getAttribute('data-group')
+
+        // Get all the items from the second dropdown
+        let opts = Array.from(document.querySelectorAll('select[id=rating]>option'))
+
+        // Hide items that are not appart of the group
+        //opts.forEach(itm => itm.style.display = itm.getAttribute('data-group') == group || !itm.getAttribute('data-group') ? 
+        //'initial' : 'none')
+
+        for (let i = 0; i < opts.length; i++) {
+          const itm = opts[i];
+
+          if (itm.getAttribute('data-group') == group || !itm.getAttribute('data-group')) {
+            itm.style.display = 'initial';
+          } 
+          else {
+            itm.style.display = 'none';
+          }
+        }
+
+        // Reset the the selection
+        document.querySelector('select[id=rating]').selectedIndex = 0
+      });
     </script>
    
   </body>
