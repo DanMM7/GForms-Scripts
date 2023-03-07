@@ -21,41 +21,6 @@ else {
 };
 
 
-setTimeout(function () {
-    if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Good');
-    }
-    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
-    }
-    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
-    }
-    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
-    }
-    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
-    }
-    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
-    }
-    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
-    }
-    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
-    }
-    else if ($('#FORM_CC1_DataDesignAdequacy').val() === "Adequate" && $('#FORM_CC1_DataOperatingEffect').val() === "Effective") {
-        $('#FORM_CC1.DataCtrlRating').val('Deficient');
-    }
-    else {
-        $('#FORM_CC1.DataCtrlRating').val('Normal opearting conditions (Green)');
-    }
-}, 1500);
-
-
-
 
 //////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
 setTimeout(function () {
@@ -174,8 +139,50 @@ setTimeout(function () {
 
 
 //////////////////////////////////// Ratings Value Filter & Change ////////////////////////////////////////////
-function getSelectValue() {
-    var selectedValue1 = '#FORM_CC1_DesignDesignAdequacy';
-    var selectedValue2 = '#FORM_CC1_DesignOperatingEffect';
+setTimeout(function () {
+    // The main group
+    let groups = document.querySelector('#FORM_CC1_DesignDesignAdequacy', '#FORM_CC1_DesignOperatingEffect')
 
-}
+    // Add a change event
+    groups.addEventListener('change', (e) => {
+    
+        // Get the currently selected Group
+        let current = e.target.options[e.target.selectedIndex]
+        
+        // Get the data-group number
+        let group = current.getAttribute('data-group')
+        
+        // Get all the items from the second dropdown
+        let opts = Array.from(document.querySelectorAll('select[id=FORM_CC1_DesignCtrlRating]>option'))
+        
+        // Hide items that are not appart of the group
+        //opts.forEach(itm => itm.style.display = itm.getAttribute('data-group') == group || !itm.getAttribute('data-group') ? 
+        //'initial' : 'none')
+        
+        for (let i = 0; i < opts.length; i++) {
+            const itm = opts[i];
+        
+            if (itm.getAttribute('data-group') == group || !itm.getAttribute('data-group')) {
+                itm.style.display = 'initial';
+            } 
+            else {
+                itm.style.display = 'none';
+            }
+        }
+        
+        // Reset the the selection
+        document.querySelector('select[id=FORM_CC1_DesignCtrlRating]').selectedIndex = 0
+    });
+
+}, 1200);
+
+
+
+
+
+/////////////////////////////////// Sticky Button //////////////////////////////////////////////
+$('#ProcessContent').html('');
+$('#dialog').dialog();
+$('#ProcessContent').append($('').attr('src', 'https://ghprodsrv03.giscoe.com/Logos/AngloMatrix.png').attr('width', '560').attr('length', '560'));
+$('#dialog').dialog('option', 'height', 580);
+$('#dialog').dialog('option', 'width', 600);
