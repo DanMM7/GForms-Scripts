@@ -33,38 +33,98 @@
 
     <script>
       // The main group
-      let groups = document.querySelector('#adequacy', '#effective')
+      let groups = document.querySelector('#adequacy, #effective')
 
       // Add a change event
       groups.addEventListener('change', (e) => {
 
-        // Get the currently selected Group
-        let current = e.target.options[e.target.selectedIndex]
+      // Get the currently selected option from the adequacy dropdown
+      let adequacySelect = document.querySelector('#adequacy');
+      let adequacyValue = adequacySelect.options[adequacySelect.selectedIndex].value;
+      let effectiveSelect = document.querySelector('#effective');
+      let effectiveValue = effectiveSelect.options[effectiveSelect.selectedIndex].value;
 
-        // Get the data-group number
-        let group = current.getAttribute('data-group')
+      // Get all the options from the rating dropdown
+      let ratingOptions = document.querySelectorAll('#rating option');
 
-        // Get all the items from the second dropdown
-        let opts = Array.from(document.querySelectorAll('select[id=rating]>option'))
+      // Filter the options based on the adequacy value and hide/show them
+      for (let i = 0; i < ratingOptions.length; i++) {
+        let ratingOption = ratingOptions[i];
 
-        // Hide items that are not appart of the group
-        //opts.forEach(itm => itm.style.display = itm.getAttribute('data-group') == group || !itm.getAttribute('data-group') ? 
-        //'initial' : 'none')
-
-        for (let i = 0; i < opts.length; i++) {
-          const itm = opts[i];
-
-          if (itm.getAttribute('data-group') == group || !itm.getAttribute('data-group')) {
-            itm.style.display = 'initial';
+        // replace 'someValue' with your desired value
+        if (adequacyValue === 'Adequate' && effectiveValue === 'Effective') { 
+          // replace 'someOtherValue' with your desired value
+          if (ratingOption.value === 'Good') { 
+            ratingOption.style.display = 'initial';
           } 
           else {
-            itm.style.display = 'none';
+            ratingOption.style.display = 'none';
           }
         }
+        // Moderate/WeaK
+        else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Effective') {
+          if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+            ratingOption.style.display = 'initial';
+          } 
+          else {
+            ratingOption.style.display = 'none';
+          }
+        }
+        // Moderate/WeaK
+        else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Partially effective') {
+          if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+            ratingOption.style.display = 'initial';
+          } 
+          else {
+            ratingOption.style.display = 'none';
+          }
+        } 
+        // Moderate/WeaK
+        else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Partially effective') {
+          if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+            ratingOption.style.display = 'initial';
+          } 
+          else {
+            ratingOption.style.display = 'none';
+          }
+        } 
+        // WeaK/Deficient
+        else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Ineffective') {
+          if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+            ratingOption.style.display = 'initial';
+          } 
+          else {
+            ratingOption.style.display = 'none';
+          }
+        } 
+        // WeaK/Deficient
+        else if (adequacyValue === 'Adequate' && effectiveValue === 'Ineffective') {
+          if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+            ratingOption.style.display = 'initial';
+          } 
+          else {
+            ratingOption.style.display = 'none';
+          }
+        } 
+        // Deficient
+        else if (adequacyValue === 'Inadequate') {
+          if (ratingOption.value === 'Deficient') {
+            ratingOption.style.display = 'initial';
+          } 
+          else {
+            ratingOption.style.display = 'none';
+          }
+        } 
+        else {
+          ratingOption.style.display = 'initial';
+        }
+
+      }
 
         // Reset the the selection
-        document.querySelector('select[id=rating]').selectedIndex = 0
+        //document.querySelector('select[id=rating]').selectedIndex = 0;
       });
+
     </script>
    
   </body>
