@@ -1,3 +1,163 @@
+ ////////////////////////////////////////// CC1-Design Ratings /////////////////////////////////////////////////////////
+ if ('{controlvalue}'.includes('Good')) { 
+    $('{this}').css('background-color', 'green').css('color', 'black'); 
+    $('#FORM_CC1_DesignActions').parent().hide();
+} 
+else if ('{controlvalue}'.includes('Moderate')) { 
+    $('{this}').css('background-color', 'yellow').css('color', 'black'); 
+    $('#FORM_CC1_DesignActions').parent().show(); 
+} 
+else if ('{controlvalue}'.includes('Weak')) { 
+    $('{this}').css('background-color', 'orange').css('color', 'white');
+    $('#FORM_CC1_DesignActions').parent().show();  
+} 
+else if ('{controlvalue}'.includes('Deficient')) { 
+    $('{this}').css('background-color', 'red').css('color', 'white'); 
+    $('#FORM_CC1_DesignActions').parent().show(); 
+} 
+else if ('{controlvalue}'.includes('[NULL]')){
+    $('{this}').css('background-color', 'white').css('color','black');
+    $('#FORM_CC1_DesignActions').parent().hide(); 
+};
+
+
+//////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
+setTimeout(function () {
+    if ($('#FORM_CC1.DesignCtrlRating').val('Good')) { 
+        $('#FORM_CC1_DesignActions').parent().hide();
+    } 
+    else if ($('#FORM_CC1.DesignCtrlRating').val('Moderate')) { 
+        $('#FORM_CC1_DesignActions').parent().show(); 
+    } 
+    else if ($('#FORM_CC1.DesignCtrlRating').val('Weak')) { 
+        $('#FORM_CC1_DesignActions').parent().show(); 
+    } 
+    else if ($('#FORM_CC1.DesignCtrlRating').val('Deficient')) { 
+        $('#FORM_CC1_DesignActions').parent().show();  
+    } 
+    else if ($('#FORM_CC1.DesignCtrlRating').val('[NULL]')){
+        $('#FORM_CC1_DesignActions').parent().hide(); 
+    };
+    
+}, 1500);
+
+
+
+
+//////////////////////////////////// Ratings Value Filter & Change ////////////////////////////////////////////
+setTimeout(function () {
+        // The main group
+        let groups = document.querySelector('#FORM_CC1_DesignDesignAdequacy')
+
+      // Add a change event
+      groups.addEventListener('change', (e) => {
+
+        // Get the currently selected option from the adequacy dropdown
+        let adequacySelect = document.querySelector('#FORM_CC1_DesignDesignAdequacy');
+        let adequacyValue = adequacySelect.options[adequacySelect.selectedIndex].value;
+        let effectiveSelect = document.querySelector('#FORM_CC1_DesignOperatingEffect');
+        let effectiveValue = effectiveSelect.options[effectiveSelect.selectedIndex].value;
+  
+        // Get all the options from the rating dropdown
+        let ratingOptions = document.querySelectorAll('#FORM_CC1_DesignCtrlRating option');
+  
+        // Filter the options based on the adequacy value and hide/show them
+        for (let i = 0; i < ratingOptions.length; i++) {
+            let ratingOption = ratingOptions[i];
+
+            // replace 'someValue' with your desired value
+            if (adequacyValue === 'Adequate' && effectiveValue === 'Effective') { 
+            // replace 'someOtherValue' with your desired value
+            if (ratingOption.value === 'Good') { 
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            }
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            }
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Partially effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Partially effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // WeaK/Deficient
+            else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Ineffective') {
+            if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // WeaK/Deficient
+            else if (adequacyValue === 'Adequate' && effectiveValue === 'Ineffective') {
+            if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // Deficient
+            else if (adequacyValue === 'Inadequate') {
+            if (ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            else {
+            ratingOption.style.display = 'initial';
+            }
+
+        }
+          // Reset the the selection
+          //document.querySelector('select[id=FORM_CC1_DesignCtrlRating]').selectedIndex = 0
+        });
+
+}, 200);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /////////////////////////////////////// CC1-Data Ratings ///////////////////////////////////////////////////
 if ('{controlvalue}'.includes('Good')) { 
     $('{this}').css('background-color', 'green').css('color', 'black'); 
@@ -92,89 +252,7 @@ setTimeout(function () {
 
 
 
- ////////////////////////////////////////// CC1-Design Ratings /////////////////////////////////////////////////////////
-if ('{controlvalue}'.includes('Good')) { 
-    $('{this}').css('background-color', 'green').css('color', 'black'); 
-    $('#FORM_CC1_DesignActions').parent().hide();
-} 
-else if ('{controlvalue}'.includes('Moderate')) { 
-    $('{this}').css('background-color', 'yellow').css('color', 'black'); 
-    $('#FORM_CC1_DesignActions').parent().show(); 
-} 
-else if ('{controlvalue}'.includes('Weak')) { 
-    $('{this}').css('background-color', 'orange').css('color', 'white');
-    $('#FORM_CC1_DesignActions').parent().show();  
-} 
-else if ('{controlvalue}'.includes('Deficient')) { 
-    $('{this}').css('background-color', 'red').css('color', 'white'); 
-    $('#FORM_CC1_DesignActions').parent().show(); 
-} 
-else if ('{controlvalue}'.includes('[NULL]')){
-    $('{this}').css('background-color', 'white').css('color','black');
-    $('#FORM_CC1_DesignActions').parent().hide(); 
-};
 
-
-//////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
-setTimeout(function () {
-    if ($('#FORM_CC1.DesignCtrlRating').val('Good')) { 
-        $('#FORM_CC1_DesignActions').parent().hide();
-    } 
-    else if ($('#FORM_CC1.DesignCtrlRating').val('Moderate')) { 
-        $('#FORM_CC1_DesignActions').parent().show(); 
-    } 
-    else if ($('#FORM_CC1.DesignCtrlRating').val('Weak')) { 
-        $('#FORM_CC1_DesignActions').parent().show(); 
-    } 
-    else if ($('#FORM_CC1.DesignCtrlRating').val('Deficient')) { 
-        $('#FORM_CC1_DesignActions').parent().show();  
-    } 
-    else if ($('#FORM_CC1.DesignCtrlRating').val('[NULL]')){
-        $('#FORM_CC1_DesignActions').parent().hide(); 
-    };
-    
-}, 1500);
-
-
-
-
-//////////////////////////////////// Ratings Value Filter & Change ////////////////////////////////////////////
-setTimeout(function () {
-    // The main group
-    let groups = document.querySelector('#FORM_CC1_DesignDesignAdequacy', '#FORM_CC1_DesignOperatingEffect')
-
-    // Add a change event
-    groups.addEventListener('change', (e) => {
-    
-        // Get the currently selected Group
-        let current = e.target.options[e.target.selectedIndex]
-        
-        // Get the data-group number
-        let group = current.getAttribute('data-group')
-        
-        // Get all the items from the second dropdown
-        let opts = Array.from(document.querySelectorAll('select[id=FORM_CC1_DesignCtrlRating]>option'))
-        
-        // Hide items that are not appart of the group
-        //opts.forEach(itm => itm.style.display = itm.getAttribute('data-group') == group || !itm.getAttribute('data-group') ? 
-        //'initial' : 'none')
-        
-        for (let i = 0; i < opts.length; i++) {
-            const itm = opts[i];
-        
-            if (itm.getAttribute('data-group') == group || !itm.getAttribute('data-group')) {
-                itm.style.display = 'initial';
-            } 
-            else {
-                itm.style.display = 'none';
-            }
-        }
-        
-        // Reset the the selection
-        document.querySelector('select[id=FORM_CC1_DesignCtrlRating]').selectedIndex = 0
-    });
-
-}, 1200);
 
 
 
