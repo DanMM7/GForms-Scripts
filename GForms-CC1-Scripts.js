@@ -1,5 +1,5 @@
  ////////////////////////////////////////// CC1-Design Ratings /////////////////////////////////////////////////////////
- if ('{controlvalue}'.includes('Good')) { 
+if ('{controlvalue}'.includes('Good')) { 
     $('{this}').css('background-color', 'green').css('color', 'black'); 
     $('#FORM_CC1_DesignActions').parent().hide();
 } 
@@ -15,10 +15,10 @@ else if ('{controlvalue}'.includes('Deficient')) {
     $('{this}').css('background-color', 'red').css('color', 'white'); 
     $('#FORM_CC1_DesignActions').parent().show(); 
 } 
-else if ('{controlvalue}'.includes('[NULL]')){
+else {
     $('{this}').css('background-color', 'white').css('color','black');
     $('#FORM_CC1_DesignActions').parent().hide(); 
-};
+}
 
 
 //////////////////////// FOR AFTER BROWSER LOAD /////////////////////////
@@ -45,12 +45,6 @@ setTimeout(function () {
 
 
 //////////////////////////////////// Ratings Value Filter & Change ////////////////////////////////////////////
-setTimeout(function () {
-        // The main group
-        let groups = document.querySelector('#FORM_CC1_DesignDesignAdequacy')
-
-      // Add a change event
-      groups.addEventListener('change', (e) => {
 
         // Get the currently selected option from the adequacy dropdown
         let adequacySelect = document.querySelector('#FORM_CC1_DesignDesignAdequacy');
@@ -76,7 +70,7 @@ setTimeout(function () {
             }
             }
             // Moderate/WeaK
-            else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Effective') {
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Effective') {
             if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
                 ratingOption.style.display = 'initial';
             } 
@@ -85,7 +79,7 @@ setTimeout(function () {
             }
             }
             // Moderate/WeaK
-            else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Partially effective') {
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
             if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
                 ratingOption.style.display = 'initial';
             } 
@@ -94,7 +88,7 @@ setTimeout(function () {
             }
             } 
             // Moderate/WeaK
-            else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Partially effective') {
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
             if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
                 ratingOption.style.display = 'initial';
             } 
@@ -103,7 +97,7 @@ setTimeout(function () {
             }
             } 
             // WeaK/Deficient
-            else if (adequacyValue === 'Partially adequate' && effectiveValue === 'Ineffective') {
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Ineffective') {
             if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
                 ratingOption.style.display = 'initial';
             } 
@@ -134,23 +128,80 @@ setTimeout(function () {
             }
 
         }
-          // Reset the the selection
-          //document.querySelector('select[id=FORM_CC1_DesignCtrlRating]').selectedIndex = 0
-        });
-
-}, 200);
 
 
+        setTimeout(function() {
+            if ($('#FORM_CC1.DesignCtrlRating').val('Good')) {
+               $('#FORM_CC1_DesignActions').parent().hide();
+            } else if ($('#FORM_CC1.DesignCtrlRating').val('Moderate')) {
+               $('#FORM_CC1_DesignActions').parent().show();
+            } else if ($('#FORM_CC1.DesignCtrlRating').val('Weak')) {
+               $('#FORM_CC1_DesignActions').parent().show();
+            } else if ($('#FORM_CC1.DesignCtrlRating').val('Deficient')) {
+               $('#FORM_CC1_DesignActions').parent().show();
+            } else if ($('#FORM_CC1.DesignCtrlRating').val('[NULL]')) {
+               $('#FORM_CC1_DesignActions').parent().hide();
+            }
+         },
+         1500);
 
 
-
-
-
-
-
-
-
-
+         setTimeout(function() {
+            let adequacySelect = document.querySelector('#FORM_CC1_DesignDesignAdequacy');
+            let adequacyValue = adequacySelect.options[adequacySelect.selectedIndex].value;
+            let effectiveSelect = document.querySelector('#FORM_CC1_DesignOperatingEffect');
+            let effectiveValue = effectiveSelect.options[effectiveSelect.selectedIndex].value;
+            let ratingOptions = document.querySelectorAll('#FORM_CC1_DesignCtrlRating option');
+            for (let i = 0; i < ratingOptions.length; i++) {
+               let ratingOption = ratingOptions[i];
+               if (adequacyValue === 'Adequate' && effectiveValue === 'Effective') {
+                  if (ratingOption.value === 'Good') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Ineffective') {
+                  if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Adequate' && effectiveValue === 'Ineffective') {
+                  if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Inadequate') {
+                  if (ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else {
+                  ratingOption.style.display = 'initial';
+               }
+            }
+         },
+         200);
 
 
 
@@ -205,6 +256,175 @@ setTimeout(function () {
 
 
 
+//////////////////////////////////// Ratings Value Filter & Change ////////////////////////////////////////////
+
+        // Get the currently selected option from the adequacy dropdown
+        let adequacySelect = document.querySelector('#FORM_CC1_DataDesignAdequacy');
+        let adequacyValue = adequacySelect.options[adequacySelect.selectedIndex].value;
+        let effectiveSelect = document.querySelector('#FORM_CC1_DataOperatingEffect');
+        let effectiveValue = effectiveSelect.options[effectiveSelect.selectedIndex].value;
+  
+        // Get all the options from the rating dropdown
+        let ratingOptions = document.querySelectorAll('#FORM_CC1_DataCtrlRating option');
+  
+        // Filter the options based on the adequacy value and hide/show them
+        for (let i = 0; i < ratingOptions.length; i++) {
+            let ratingOption = ratingOptions[i];
+
+            // replace 'someValue' with your desired value
+            if (adequacyValue === 'Adequate' && effectiveValue === 'Effective') { 
+            // replace 'someOtherValue' with your desired value
+            if (ratingOption.value === 'Good') { 
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            }
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            }
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // WeaK/Deficient
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Ineffective') {
+            if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // WeaK/Deficient
+            else if (adequacyValue === 'Adequate' && effectiveValue === 'Ineffective') {
+            if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // Deficient
+            else if (adequacyValue === 'Inadequate') {
+            if (ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            else {
+            ratingOption.style.display = 'initial';
+            }
+
+        }
+
+
+        setTimeout(function () {
+            if ($('#FORM_CC1.DataCtrlRating').val('Good')) { 
+                $('#FORM_CC1_DataActions').parent().hide();
+            } 
+            else if ($('#FORM_CC1.DataCtrlRating').val('Moderate')) { 
+                $('#FORM_CC1_DataActions').parent().show(); 
+            } 
+            else if ($('#FORM_CC1.DataCtrlRating').val('Weak')) { 
+                $('#FORM_CC1_DataActions').parent().show(); 
+            } 
+            else if ($('#FORM_CC1.DataCtrlRating').val('Deficient')) { 
+                $('#FORM_CC1_DataActions').parent().show();  
+            } 
+            else if ($('#FORM_CC1.DataCtrlRating').val('[NULL]')){
+                $('#FORM_CC1_DataActions').parent().hide(); 
+            };
+            
+        }, 1500);
+        
+
+
+         setTimeout(function() {
+            let adequacySelect = document.querySelector('#FORM_CC1_DataDesignAdequacy');
+            let adequacyValue = adequacySelect.options[adequacySelect.selectedIndex].value;
+            let effectiveSelect = document.querySelector('#FORM_CC1_DataOperatingEffect');
+            let effectiveValue = effectiveSelect.options[effectiveSelect.selectedIndex].value;
+            let ratingOptions = document.querySelectorAll('#FORM_CC1_DataCtrlRating option');
+            for (let i = 0; i < ratingOptions.length; i++) {
+               let ratingOption = ratingOptions[i];
+               if (adequacyValue === 'Adequate' && effectiveValue === 'Effective') {
+                  if (ratingOption.value === 'Good') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Ineffective') {
+                  if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Adequate' && effectiveValue === 'Ineffective') {
+                  if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Inadequate') {
+                  if (ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else {
+                  ratingOption.style.display = 'initial';
+               }
+            }
+         },
+         200);
+
+
+
+
+
+
 
 ////////////////////////////////////////// CC1-Verification Ratings /////////////////////////////////////////////////////////
 if ('{controlvalue}'.includes('Good')) { 
@@ -249,6 +469,173 @@ setTimeout(function () {
     
 }, 1500);
 
+
+
+
+
+//////////////////////////////////// Ratings Value Filter & Change ////////////////////////////////////////////
+
+        // Get the currently selected option from the adequacy dropdown
+        let adequacySelect = document.querySelector('#FORM_CC1_VerificationDesignAdequacy');
+        let adequacyValue = adequacySelect.options[adequacySelect.selectedIndex].value;
+        let effectiveSelect = document.querySelector('#FORM_CC1_VerificationOperatingEffect');
+        let effectiveValue = effectiveSelect.options[effectiveSelect.selectedIndex].value;
+  
+        // Get all the options from the rating dropdown
+        let ratingOptions = document.querySelectorAll('#FORM_CC1_VerificationCtrlRating option');
+  
+        // Filter the options based on the adequacy value and hide/show them
+        for (let i = 0; i < ratingOptions.length; i++) {
+            let ratingOption = ratingOptions[i];
+
+            // replace 'someValue' with your desired value
+            if (adequacyValue === 'Adequate' && effectiveValue === 'Effective') { 
+            // replace 'someOtherValue' with your desired value
+            if (ratingOption.value === 'Good') { 
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            }
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            }
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // Moderate/WeaK
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+            if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // WeaK/Deficient
+            else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Ineffective') {
+            if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // WeaK/Deficient
+            else if (adequacyValue === 'Adequate' && effectiveValue === 'Ineffective') {
+            if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            // Deficient
+            else if (adequacyValue === 'Inadequate') {
+            if (ratingOption.value === 'Deficient') {
+                ratingOption.style.display = 'initial';
+            } 
+            else {
+                ratingOption.style.display = 'none';
+            }
+            } 
+            else {
+            ratingOption.style.display = 'initial';
+            }
+
+        }
+
+
+        setTimeout(function () {
+            if ($('#FORM_CC1.VerificationCtrlRating').val('Good')) { 
+                $('#FORM_CC1_VerificationActions').parent().hide();
+            } 
+            else if ($('#FORM_CC1.VerificationCtrlRating').val('Moderate')) { 
+                $('#FORM_CC1_VerificationActions').parent().show(); 
+            } 
+            else if ($('#FORM_CC1.VerificationCtrlRating').val('Weak')) { 
+                $('#FORM_CC1_VerificationActions').parent().show(); 
+            } 
+            else if ($('#FORM_CC1.VerificationCtrlRating').val('Deficient')) { 
+                $('#FORM_CC1_VerificationActions').parent().show();  
+            } 
+            else if ($('#FORM_CC1.VerificationCtrlRating').val('[NULL]')){
+                $('#FORM_CC1_VerificationActions').parent().hide(); 
+            };
+            
+        }, 1500);
+        
+
+
+         setTimeout(function() {
+            let adequacySelect = document.querySelector('#FORM_CC1_VerificationDesignAdequacy');
+            let adequacyValue = adequacySelect.options[adequacySelect.selectedIndex].value;
+            let effectiveSelect = document.querySelector('#FORM_CC1_VerificationOperatingEffect');
+            let effectiveValue = effectiveSelect.options[effectiveSelect.selectedIndex].value;
+            let ratingOptions = document.querySelectorAll('#FORM_CC1_VerificationCtrlRating option');
+            for (let i = 0; i < ratingOptions.length; i++) {
+               let ratingOption = ratingOptions[i];
+               if (adequacyValue === 'Adequate' && effectiveValue === 'Effective') {
+                  if (ratingOption.value === 'Good') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Partially effective') {
+                  if (ratingOption.value === 'Moderate' || ratingOption.value === 'Weak') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Partially Adequate' && effectiveValue === 'Ineffective') {
+                  if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Adequate' && effectiveValue === 'Ineffective') {
+                  if (ratingOption.value === 'Weak' || ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else if (adequacyValue === 'Inadequate') {
+                  if (ratingOption.value === 'Deficient') {
+                     ratingOption.style.display = 'initial';
+                  } else {
+                     ratingOption.style.display = 'none';
+                  }
+               } else {
+                  ratingOption.style.display = 'initial';
+               }
+            }
+         },
+         200);
 
 
 
